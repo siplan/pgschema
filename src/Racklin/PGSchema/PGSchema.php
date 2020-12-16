@@ -163,7 +163,7 @@ class PGSchema
     public function create($schemaName, $databaseName = null)
     {
         if ($this->getDatabaseDriverName($databaseName) == 'pgsql') {
-            DB::connection($databaseName)->statement('CREATE SCHEMA ' . $schemaName);
+            DB::connection($databaseName)->statement('CREATE SCHEMA IF NOT EXISTS ' . $schemaName);
         }
     }
 
@@ -176,7 +176,7 @@ class PGSchema
     public function drop($schemaName, $databaseName = null)
     {
         if ($this->getDatabaseDriverName($databaseName) == 'pgsql') {
-            DB::connection($databaseName)->statement('DROP SCHEMA ' . $schemaName . ' CASCADE');
+            DB::connection($databaseName)->statement('DROP SCHEMA IF EXISTS ' . $schemaName . ' CASCADE');
         }
     }
 
